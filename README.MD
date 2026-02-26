@@ -21,5 +21,12 @@ sudo dnf install wl-clipboard
 # Si usas X11 (Legacy):
 # sudo dnf install xclip
 
-# 4. Node.js & NPM (Obligatorio para los servidores LSP de Vue/TS/JS)
-sudo dnf install nodejs npm
+# 4. NVM para Node y NPM
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+# 5. Lazy git
+# Habiliar repositorio para instalarlo
+sudo dnf copr enable atim/lazygit -y
+sudo dnf install lazygit
