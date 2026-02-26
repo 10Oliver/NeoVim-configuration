@@ -30,3 +30,12 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 # Habiliar repositorio para instalarlo
 sudo dnf copr enable atim/lazygit -y
 sudo dnf install lazygit
+
+# Q/A
+
+### Editar en LazyGit no funciona
+Si el problema es que trata de abrir `vim` lo ideal es configurar en el archivo de configuración (preferiblemente zsh) con el editor por defecto.
+
+echo 'export EDITOR="nvim"' >> ~/.zshrc
+echo 'export VISUAL="nvim"' >> ~/.zshrc
+source ~/.zshrc
