@@ -205,7 +205,22 @@ require("lazy").setup({
       { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Buscar Texto" },
       { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Ver Buffers" },
       { "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "Cambiar de Rama" },
-
+    },
+    opts = {
+      defaults = {
+          file_ignore_patterns = { "%.git/", "node_modules/", "vendor/" }
+      },
+      pickers = {
+        find_files = {
+          hidden = true,
+          no_ignore = true,
+        },
+        live_grep = {
+          additional_args = function()
+            return { "--hidden", "--no-ignore" }
+          end,
+        },
+      },
     },
   },
 
