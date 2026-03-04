@@ -13,8 +13,9 @@ vim.opt.clipboard = "unnamedplus" -- Sincroniza con el portapapeles del sistema 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.updatetime = 250
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
 vim.opt.expandtab = true
 
 -- 2. GESTOR DE PLUGINS (LAZY.NVIM)
@@ -117,6 +118,11 @@ require("lazy").setup({
         css = { "prettier" },
         html = { "prettier" },
         json = { "prettier" },
+      },
+      formatters = {
+        prettier = {
+          prepend_args = { "--single-attribute-per-line" },
+        },
       },
       -- Habilita el formateo al guardar (opcional, pero recomendado)
       format_on_save = nil,
