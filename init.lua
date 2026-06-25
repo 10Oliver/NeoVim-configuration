@@ -1,4 +1,4 @@
--- CONFIGURACIÓN BÁSICA
+-- BASIC CONFIGURATION
 vim.g.mapleader = " "
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -25,7 +25,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  -- TEMA
+  -- THEME
   {
     "folke/tokyonight.nvim",
     lazy = false,
@@ -39,7 +39,7 @@ require("lazy").setup({
     end,
   },
 
-  -- ICONOS
+  -- ICONS
   "nvim-tree/nvim-web-devicons",
 
   -- BUFFERLINE
@@ -61,7 +61,7 @@ require("lazy").setup({
       for i = 1, 9 do
         vim.keymap.set('n', '<leader>' .. i, function() 
           require("bufferline").go_to(i, true) 
-        end, { desc = "Ir al buffer visible " .. i })
+        end, { desc = "Go to visible buffer " .. i })
       end
       vim.keymap.set('n', '<Tab>', ':BufferLineCycleNext<CR>')
       vim.keymap.set('n', '<S-Tab>', ':BufferLineCyclePrev<CR>')
@@ -97,7 +97,7 @@ require("lazy").setup({
           require("conform").format({ async = true, lsp_fallback = true })
         end,
         mode = "",
-        desc = "Formatear Buffer",
+        desc = "Format Buffer",
       },
     },
     opts = {
@@ -170,7 +170,7 @@ require("lazy").setup({
             return '<Ignore>'
           end, { expr = true })
 
-          -- ACCIONES GIT
+          -- GIT ACTIONS
           map('n', '<leader>hs', gs.stage_hunk)
           map('n', '<leader>hr', gs.reset_hunk)
           map('v', '<leader>hs', function() gs.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end)
@@ -198,10 +198,10 @@ require("lazy").setup({
     'nvim-telescope/telescope.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
     keys = {
-      { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Buscar Archivos" },
-      { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Buscar Texto" },
-      { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Ver Buffers" },
-      { "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "Cambiar de Rama" },
+      { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
+      { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
+      { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "List Buffers" },
+      { "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "Git Branches" },
     },
     opts = {
       defaults = {
@@ -234,7 +234,7 @@ require("lazy").setup({
       "nvim-lua/plenary.nvim",
     },
     keys = {
-      { "<leader>lg", "<cmd>LazyGit<cr>", desc = "Abrir LazyGit" },
+      { "<leader>lg", "<cmd>LazyGit<cr>", desc = "Open LazyGit" },
     },
   },
 
@@ -290,7 +290,7 @@ require("lazy").setup({
         end
       end
 
-      -- 1. HANDLERS AUTOMÁTICOS
+      -- 1. AUTOMATIC HANDLERS
       mason_lspconfig.setup({
         ensure_installed = { "ts_ls", "vue_ls", "intelephense", "html", "cssls", "eslint", "tailwindcss" },
         handlers = {
@@ -306,7 +306,7 @@ require("lazy").setup({
         }
       })
 
-      -- 2. CONFIGURACIÓN MANUAL DE TS_LS
+      -- 2. MANUAL TS_LS CONFIGURATION
       local mason_registry_path = vim.fn.stdpath("data") .. "/mason/packages"
       local vue_language_server_path = mason_registry_path .. "/vue-language-server/node_modules/@vue/language-server"
 
@@ -323,7 +323,7 @@ require("lazy").setup({
         },
       })
 
-      -- 3. AUTOCOMPLETADO
+      -- 3. AUTOCOMPLETION
       cmp.setup({
         snippet = { expand = function(args) luasnip.lsp_expand(args.body) end },
         mapping = cmp.mapping.preset.insert({
@@ -348,10 +348,10 @@ require("lazy").setup({
   }
 })
 
--- DIAGNÓSTICOS
-vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = "Ver mensaje de error" })
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Ir al error anterior" })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Ir al siguiente error" })
+-- DIAGNOSTICS
+vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = "View error message" })
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous error" })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next error" })
 
 vim.diagnostic.config({
   virtual_text = true,

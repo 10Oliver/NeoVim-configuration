@@ -1,35 +1,35 @@
 # 🚀 NeoVim Personal Configuration (PDC)
 
-Esta es mi configuración personalizada ("Personal Developer Center") para NeoVim, optimizada para desarrollo Web (Vue, TS, JS).
+This is my personal configuration ("Personal Developer Center") for NeoVim, optimized for Web development (Vue, TS, JS).
 
-## 🛠️ Instalación de Neovim
+## 🛠️ Neovim Installation
 
-Para asegurar la compatibilidad total con los plugins, se requiere **Neovim 0.10 o superior** (preparado para 0.11+).
+To ensure full compatibility with the plugins, **Neovim 0.10 or higher** is required (ready for 0.11+).
 
 ### Fedora
-En Fedora puedes instalarlo directamente desde los repositorios oficiales ya que suelen estar actualizados:
+On Fedora, you can install it directly from the official repositories since they are usually up to date:
 ```bash
 sudo dnf install -y neovim
 ```
 
 ### Debian / Ubuntu
-Dado que los repositorios oficiales de Debian/Ubuntu suelen tener versiones muy antiguas de Neovim, la forma recomendada es descargar la versión precompilada más reciente oficial:
+Since the official Debian/Ubuntu repositories usually have very old versions of Neovim, the recommended way is to download the latest official pre-compiled version:
 ```bash
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
 sudo rm -rf /opt/nvim
 sudo tar -C /opt -xzf nvim-linux64.tar.gz
 echo 'export PATH="$PATH:/opt/nvim-linux64/bin"' >> ~/.bashrc
-# Si usas zsh, cambia .bashrc por .zshrc
+# If you use zsh, change .bashrc to .zshrc
 ```
 
-## 📋 Requisitos Previos
+## 📋 Prerequisites
 
-Dependencias necesarias para el funcionamiento correcto de los plugins (Telescope, Treesitter, etc.).
+Dependencies required for the plugins to work properly (Telescope, Treesitter, etc.).
 
-### Dependencias en Fedora:
+### Dependencies on Fedora:
 
 ```bash
-# 1. Dependencias del sistema y utilidades
+# 1. System dependencies and utilities
 sudo dnf install -y gcc g++ make unzip wget curl git ripgrep fd-find wl-clipboard
 
 # 2. NVM (Node Version Manager)
@@ -42,10 +42,10 @@ sudo dnf copr enable atim/lazygit -y
 sudo dnf install lazygit -y
 ```
 
-### Dependencias en Debian / Ubuntu:
+### Dependencies on Debian / Ubuntu:
 
 ```bash
-# 1. Dependencias del sistema y utilidades
+# 1. System dependencies and utilities
 sudo apt update
 sudo apt install -y build-essential unzip wget curl git ripgrep fd-find xclip wl-clipboard
 
@@ -62,9 +62,9 @@ sudo install lazygit /usr/local/bin
 rm lazygit.tar.gz lazygit
 ```
 
-### Notas Adicionales
+### Additional Notes
 
-Si LazyGit falla al abrir un archivo para editar, configura tu editor por defecto en `~/.bashrc` o `~/.zshrc`:
+If LazyGit fails when opening a file to edit, configure your default editor in `~/.bashrc` or `~/.zshrc`:
 ```bash
 export EDITOR="nvim"
 export VISUAL="nvim"
