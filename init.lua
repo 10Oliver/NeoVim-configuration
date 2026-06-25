@@ -238,6 +238,19 @@ require("lazy").setup({
     },
   },
 
+  -- VUE TRADITIONAL SYNTAX (Fallback for huge files)
+  {
+    "posva/vim-vue",
+    ft = "vue",
+    config = function()
+      -- Sync from start so it doesn't lose color when scrolling
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "vue",
+        command = "syntax sync fromstart",
+      })
+    end
+  },
+
   -- TREESITTER
   {
     "nvim-treesitter/nvim-treesitter",
@@ -250,7 +263,16 @@ require("lazy").setup({
         ensure_installed = { "javascript", "typescript", "vue", "php", "html", "css", "lua", "json", "bash" },
         sync_install = false,
         auto_install = true,
-        highlight = { enable = true },
+        highlight = {
+          enable = true,
+          disable = function(lang, buf)
+            local max_filesize = 100 * 1024 -- 100 KB
+            local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+            if ok and stats and stats.size > max_filesize then
+              return true
+            end
+          end,
+        },
         indent = { enable = true },
       }
     end
