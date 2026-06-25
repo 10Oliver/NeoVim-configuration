@@ -1,41 +1,31 @@
-# 🚀 Mi Configuración Personal de NeoVim (PDC)
+# 🚀 NeoVim Personal Configuration (PDC)
 
-Esta es mi configuración personalizada ("Personal Developer Center") para NeoVim, optimizada para desarrollo Web (Vue, TS, JS) en Fedora Linux.
+Esta es mi configuración personalizada ("Personal Developer Center") para NeoVim, optimizada para desarrollo Web (Vue, TS, JS).
 
-## 📋 Requisitos Previos (Dependencias Externas)
+## 📋 Requisitos Previos
 
-Antes de clonar esta configuración, es necesario instalar estas herramientas en el sistema para que los plugins funcionen correctamente (Telescope, Clipboard, Treesitter, etc.).
+Dependencias necesarias para el funcionamiento correcto de los plugins (Telescope, Treesitter, etc.).
 
-### En Fedora (40/41/42):
+### Instalación en Fedora:
 
 ```bash
-# 1. Herramientas básicas de compilación (Para Treesitter y Mason)
-sudo dnf install gcc g++ make unzip wget curl git
+# 1. Dependencias del sistema y utilidades
+sudo dnf install -y gcc g++ make unzip wget curl git ripgrep fd-find wl-clipboard
 
-# 2. Buscador rápido (Para Telescope 'live_grep')
-sudo dnf install ripgrep fd-find
-
-# 3. Portapapeles (Para copiar/pegar entre Nvim y el sistema)
-# Si usas Wayland (Gnome/KDE moderno):
-sudo dnf install wl-clipboard
-# Si usas X11 (Legacy):
-# sudo dnf install xclip
-
-# 4. NVM para Node y NPM
+# 2. NVM (Node Version Manager)
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-# 5. Lazy git
-# Habiliar repositorio para instalarlo
+# 3. LazyGit
 sudo dnf copr enable atim/lazygit -y
-sudo dnf install lazygit
+sudo dnf install lazygit -y
+```
 
-# Q/A
+### Notas Adicionales
 
-### Editar en LazyGit no funciona
-Si el problema es que trata de abrir `vim` lo ideal es configurar en el archivo de configuración (preferiblemente zsh) con el editor por defecto.
-
-echo 'export EDITOR="nvim"' >> ~/.zshrc
-echo 'export VISUAL="nvim"' >> ~/.zshrc
-source ~/.zshrc
+Si LazyGit falla al abrir un archivo, configura tu editor por defecto en `~/.bashrc` o `~/.zshrc`:
+```bash
+export EDITOR="nvim"
+export VISUAL="nvim"
+```

@@ -1,15 +1,11 @@
--- ==========================================================================
--- CONFIGURACIÓN FINAL DE NEOVIM (Fedora 42 / Neovim 0.11 Ready)
--- ==========================================================================
-
--- 1. CONFIGURACIÓN BÁSICA
+-- CONFIGURACIÓN BÁSICA
 vim.g.mapleader = " "
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
 vim.opt.termguicolors = true
 vim.opt.scrolloff = 8
-vim.opt.clipboard = "unnamedplus" -- Sincroniza con el portapapeles del sistema (requiere wl-clipboard o xclip)
+vim.opt.clipboard = "unnamedplus"
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.updatetime = 250
@@ -18,7 +14,7 @@ vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
 vim.opt.expandtab = true
 
--- 2. GESTOR DE PLUGINS (LAZY.NVIM)
+-- LAZY.NVIM
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -70,34 +66,32 @@ require("lazy").setup({
       vim.keymap.set('n', '<Tab>', ':BufferLineCycleNext<CR>')
       vim.keymap.set('n', '<S-Tab>', ':BufferLineCyclePrev<CR>')
       vim.keymap.set('n', '<leader>x', ':bdelete<CR>')
-      vim.keymap.set('n', '<Tab>', ':BufferLineCycleNext<CR>')
     end
   },
-  -- AUTO-PAIRS (Cierra paréntesis y corchetes automágicamente)
+  -- AUTO-PAIRS
   {
     'windwp/nvim-autopairs',
     event = "InsertEnter",
     config = true
   },
-  -- WHICH-KEY (Muestra atajos disponibles en un popup)
+  -- WHICH-KEY
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
     init = function()
       vim.o.timeout = true
-      vim.o.timeoutlen = 300 -- Muestra el menú tras 300ms
+      vim.o.timeoutlen = 300
     end,
     opts = {}
   },
 
-  -- FORMATEO (Conform.nvim)
+  -- Conform.nvim
   {
     "stevearc/conform.nvim",
     event = { "BufWritePre" },
     cmd = { "ConformInfo" },
     keys = {
       {
-        -- Atajo para formatear manualmente
         "<leader>ft",
         function()
           require("conform").format({ async = true, lsp_fallback = true })
@@ -107,7 +101,6 @@ require("lazy").setup({
       },
     },
     opts = {
-      -- Define tus formateadores por tipo de archivo
       formatters_by_ft = {
         lua = { "stylua" },
         javascript = { "prettier" },
@@ -124,7 +117,6 @@ require("lazy").setup({
           prepend_args = { "--single-attribute-per-line" },
         },
       },
-      -- Habilita el formateo al guardar (opcional, pero recomendado)
       format_on_save = nil,
     },
   },
@@ -151,7 +143,7 @@ require("lazy").setup({
     end,
   },
 
-  -- GIT INTEGRATION (MEJORADO)
+  -- GITSIGNS
   {
     "lewis6991/gitsigns.nvim",
     config = function()
@@ -178,16 +170,16 @@ require("lazy").setup({
             return '<Ignore>'
           end, { expr = true })
 
-          -- ACCIONES GIT (Aquí está lo nuevo)
-          map('n', '<leader>hs', gs.stage_hunk)       -- Stage pedazo actual
-          map('n', '<leader>hr', gs.reset_hunk)       -- Deshacer pedazo actual
-          map('v', '<leader>hs', function() gs.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end) -- Stage selección visual
-          map('v', '<leader>hr', function() gs.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end) -- Reset selección visual
-          map('n', '<leader>hR', gs.reset_buffer)     -- Reset archivo COMPLETO
-          map('n', '<leader>hS', gs.stage_buffer)     -- Stage archivo COMPLETO
-          map('n', '<leader>hu', gs.undo_stage_hunk)  -- Deshacer stage
-          map('n', '<leader>hp', gs.preview_hunk)     -- Previsualizar cambio
-          map('n', '<leader>tb', gs.toggle_current_line_blame) -- Toggle firma de git
+          -- ACCIONES GIT
+          map('n', '<leader>hs', gs.stage_hunk)
+          map('n', '<leader>hr', gs.reset_hunk)
+          map('v', '<leader>hs', function() gs.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end)
+          map('v', '<leader>hr', function() gs.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end)
+          map('n', '<leader>hR', gs.reset_buffer)
+          map('n', '<leader>hS', gs.stage_buffer)
+          map('n', '<leader>hu', gs.undo_stage_hunk)
+          map('n', '<leader>hp', gs.preview_hunk)
+          map('n', '<leader>tb', gs.toggle_current_line_blame)
         end
       })
     end
@@ -195,14 +187,13 @@ require("lazy").setup({
   {
     "sindrets/diffview.nvim",
     keys = {
-      -- <leader> es tu tecla Espacio
-      { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "Abrir DiffView (Git Diff)" },
-      { "<leader>gc", "<cmd>DiffviewClose<cr>", desc = "Cerrar DiffView" },
-      { "<leader>gh", "<cmd>DiffviewFileHistory %<cr>", desc = "Ver Historial del Archivo Actual" },
+      { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "DiffView" },
+      { "<leader>gc", "<cmd>DiffviewClose<cr>", desc = "Close DiffView" },
+      { "<leader>gh", "<cmd>DiffviewFileHistory %<cr>", desc = "File History" },
     },
   },
 
-  -- BUSCADOR (Telescope)
+  -- TELESCOPE
   {
     'nvim-telescope/telescope.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
@@ -229,7 +220,7 @@ require("lazy").setup({
       },
     },
   },
-  -- LAZYGIT (Interfaz gráfica completa para Git dentro de Nvim)
+  -- LAZYGIT
   {
     "kdheepak/lazygit.nvim",
     cmd = {
@@ -265,7 +256,7 @@ require("lazy").setup({
     end
   },
 
-  -- LSP (MASON + CONFIGURACIÓN HÍBRIDA)
+  -- LSP
   {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -287,12 +278,10 @@ require("lazy").setup({
 
       mason.setup()
 
-      -- Función auxiliar para activar servidores sin advertencias
       local function setup_server(server_name, config)
         config = config or {}
         config.capabilities = capabilities
         
-        -- Detectamos si es Neovim 0.11+
         if vim.fn.has("nvim-0.11") == 1 then
           vim.lsp.config[server_name] = config
           vim.lsp.enable(server_name)
@@ -359,25 +348,19 @@ require("lazy").setup({
   }
 })
 
--- ==========================================
--- ATAJOS PARA DIAGNÓSTICO (ERRORES/LSP)
--- ==========================================
-
--- Abre el mensaje del error en una ventana flotante (Lo que buscas)
+-- DIAGNÓSTICOS
 vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = "Ver mensaje de error" })
-
--- Navegar entre errores rápidamente (saltar al siguiente/anterior)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Ir al error anterior" })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Ir al siguiente error" })
 
 vim.diagnostic.config({
-  virtual_text = true, -- Muestra el error al final de la línea
-  signs = true,        -- Muestra el icono a la izquierda
+  virtual_text = true,
+  signs = true,
   update_in_insert = false,
   underline = true,
   severity_sort = true,
   float = {
-    border = "rounded", -- Borde redondeado para la ventana flotante
-    source = "always",  -- Te dice qué herramienta reporta el error (ej: eslint, tsserver)
+    border = "rounded",
+    source = "always",
   },
 })
