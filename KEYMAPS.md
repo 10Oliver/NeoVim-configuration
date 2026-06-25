@@ -41,6 +41,7 @@ When you are in Insert Mode and Copilot provides a suggestion:
 | `<leader>ff` | Find Files (including hidden ones) |
 | `<leader>fg` | Live Grep (Search text across the project) |
 | `<leader>fb` | List open Buffers |
+| `<leader>fk` | Find Keymaps (Rofi/Launcher style search for shortcuts) |
 | `<leader>gb` | Switch Git Branches |
 
 ---
