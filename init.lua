@@ -111,6 +111,8 @@ require("lazy").setup({
         css = { "prettier" },
         html = { "prettier" },
         json = { "prettier" },
+        svelte = { "prettier" },
+        angular = { "prettier" },
       },
       formatters = {
         prettier = {
@@ -238,6 +240,26 @@ require("lazy").setup({
     },
   },
 
+  -- UI & FRAMEWORKS (Tailwind, Autotag, etc.)
+  {
+    "windwp/nvim-ts-autotag",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require('nvim-ts-autotag').setup()
+    end,
+  },
+  {
+    "NvChad/nvim-colorizer.lua",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("colorizer").setup({
+        user_default_options = {
+          tailwind = true, -- Enable tailwind colors
+        }
+      })
+    end
+  },
+
   -- VUE TRADITIONAL SYNTAX (Fallback for huge files)
   {
     "posva/vim-vue",
@@ -260,7 +282,7 @@ require("lazy").setup({
       local ok, configs = pcall(require, "nvim-treesitter.configs")
       if not ok then return end
       configs.setup {
-        ensure_installed = { "javascript", "typescript", "vue", "php", "html", "css", "lua", "json", "bash" },
+        ensure_installed = { "javascript", "typescript", "vue", "svelte", "angular", "php", "html", "css", "lua", "json", "bash" },
         sync_install = false,
         auto_install = true,
         highlight = {
@@ -323,7 +345,7 @@ require("lazy").setup({
 
       -- 1. AUTOMATIC HANDLERS
       mason_lspconfig.setup({
-        ensure_installed = { "ts_ls", "vue_ls", "intelephense", "html", "cssls", "eslint", "tailwindcss" },
+        ensure_installed = { "ts_ls", "vue_ls", "svelte", "angularls", "intelephense", "html", "cssls", "eslint", "tailwindcss" },
         handlers = {
           function(server_name)
             if server_name ~= "ts_ls" then
