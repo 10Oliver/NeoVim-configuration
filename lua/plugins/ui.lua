@@ -76,12 +76,12 @@ return {
     "akinsho/toggleterm.nvim",
     version = "*",
     keys = {
-      { "<C-\\>", "<cmd>ToggleTerm<cr>", desc = "Toggle Terminal" },
+      { "<leader>t", "<cmd>ToggleTerm<cr>", desc = "Toggle Terminal" },
     },
     config = function()
       require("toggleterm").setup({
         size = 20,
-        open_mapping = [[<c-\>]],
+        open_mapping = [[<leader>t]],
         hide_numbers = true,
         shade_filetypes = {},
         shade_terminals = true,

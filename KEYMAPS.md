@@ -95,7 +95,7 @@ When you are in Insert Mode and Copilot provides a suggestion:
 ## 💻 Terminal (ToggleTerm)
 | Keybinding | Action |
 | --- | --- |
-| `<C-\>` | Toggle floating terminal |
+| `<leader>t` | Toggle floating terminal |
 
 ---
 
