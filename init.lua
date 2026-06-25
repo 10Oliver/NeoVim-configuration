@@ -284,6 +284,7 @@ require("lazy").setup({
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
+      "WhoIsSethDaniel/mason-tool-installer.nvim",
       "hrsh7th/nvim-cmp",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
@@ -299,6 +300,14 @@ require("lazy").setup({
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
       mason.setup()
+
+      -- Automatically install formatters
+      require('mason-tool-installer').setup({
+        ensure_installed = {
+          'prettier',
+          'stylua',
+        },
+      })
 
       local function setup_server(server_name, config)
         config = config or {}
