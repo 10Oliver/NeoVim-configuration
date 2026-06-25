@@ -82,3 +82,24 @@ When you are in Insert Mode and Copilot provides a suggestion:
 | `<leader>d` | View error/diagnostic message in a floating window |
 | `]d` | Go to next error/diagnostic |
 | `[d` | Go to previous error/diagnostic |
+
+---
+
+## 🌲 File Explorer (Neo-Tree)
+| Keybinding | Action |
+| --- | --- |
+| `<leader>e` | Toggle File Explorer |
+
+---
+
+## 💻 Terminal (ToggleTerm)
+| Keybinding | Action |
+| --- | --- |
+| `<C-\>` | Toggle floating terminal |
+
+---
+
+## 🌐 HTTP Client (Kulala.nvim)
+| Keybinding | Action |
+| --- | --- |
+| `<leader>R` | Run HTTP Request under cursor |

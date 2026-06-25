@@ -2,6 +2,29 @@
 
 This is my personal configuration ("Personal Developer Center") for NeoVim, optimized for Web development (Vue, TS, JS).
 
+## 📂 File Structure
+
+This configuration uses a modular structure managed by `lazy.nvim` to keep settings organized and maintainable:
+
+```text
+~/.config/nvim/
+├── init.lua
+└── lua/
+    ├── config/
+    │   ├── keymaps.lua
+    │   └── options.lua
+    └── plugins/
+        ├── ui.lua
+        ├── git.lua
+        ├── lsp.lua
+        └── utils.lua
+```
+
+### 📥 Installation
+Clone this repository directly into your Neovim configuration directory:
+```bash
+git clone https://github.com/10Oliver/NeoVim-configuration.git ~/.config/nvim
+```
 ## 🛠️ Neovim Installation
 
 To ensure full compatibility with the plugins, **Neovim 0.10 or higher** is required (ready for 0.11+).
