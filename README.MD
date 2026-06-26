@@ -25,9 +25,19 @@ Clone this repository directly into your Neovim configuration directory:
 ```bash
 git clone https://github.com/10Oliver/NeoVim-configuration.git ~/.config/nvim
 ```
+
+### 🔄 Updating
+If you already have this config installed and want to pull the latest updates (e.g., the TreeSitter version fix):
+```bash
+cd ~/.config/nvim
+git pull
+```
+After pulling, open Neovim and run `:Lazy sync` to update the plugins.
+
 ## 🛠️ Neovim Installation
 
-To ensure full compatibility with the plugins, **Neovim 0.10 or higher** is required (ready for 0.11+).
+To ensure full compatibility with the plugins, **Neovim 0.10 or higher** is required.
+*Note: `nvim-treesitter` is pinned to `v0.9.3` to maintain compatibility with Neovim 0.11 and older. If you update Neovim to 0.12+ (Nightly), you can remove the `tag = "v0.9.3"` from `lua/plugins/lsp.lua` to use the latest treesitter branch.*
 
 ### Fedora
 On Fedora, you can install it directly from the official repositories since they are usually up to date:
