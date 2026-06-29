@@ -97,6 +97,11 @@ When you are in Insert Mode and Copilot provides a suggestion:
 | Keybinding | Action |
 | --- | --- |
 | `<leader>t` | Toggle floating terminal |
+| `<Esc>` (in terminal) | Exit terminal mode |
+| `<C-h/j/k/l>` (in terminal) | Navigate between windows |
+| `<leader>t` (in terminal) | Toggle terminal from inside terminal |
+
+**Note**: Terminal automatically enters insert mode when opened or focused.
 
 ---
 

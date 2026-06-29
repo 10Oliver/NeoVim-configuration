@@ -89,9 +89,47 @@ return {
         start_in_insert = true,
         insert_mappings = true,
         persist_size = true,
+        persist_mode = true,
         direction = "float",
         close_on_exit = true,
         shell = vim.o.shell,
+        auto_scroll = true,
+        float_opts = {
+          border = "curved",
+          winblend = 0,
+          highlights = {
+            border = "Normal",
+            background = "Normal",
+          },
+        },
+      })
+
+      vim.api.nvim_create_autocmd("TermEnter", {
+        pattern = "term://*",
+        callback = function()
+          vim.cmd("startinsert")
+        end,
+      })
+
+      vim.api.nvim_create_autocmd("BufEnter", {
+        pattern = "term://*",
+        callback = function()
+          vim.cmd("startinsert")
+        end,
+      })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "toggleterm",
+        callback = function()
+          vim.opt_local.number = false
+          vim.opt_local.relativenumber = false
+          vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { buffer = true, desc = "Exit terminal mode" })
+          vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], { buffer = true, desc = "Move to left window" })
+          vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], { buffer = true, desc = "Move to bottom window" })
+          vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], { buffer = true, desc = "Move to top window" })
+          vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], { buffer = true, desc = "Move to right window" })
+          vim.keymap.set("t", "<leader>t", [[<Cmd>ToggleTerm<CR>]], { buffer = true, desc = "Toggle terminal" })
+        end,
       })
     end
   },
