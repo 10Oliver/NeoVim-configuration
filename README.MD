@@ -75,6 +75,22 @@ sudo dnf copr enable atim/lazygit -y
 sudo dnf install lazygit -y
 ```
 
+```fish
+# 1. System dependencies and utilities
+sudo dnf install -y gcc g++ make unzip wget curl git ripgrep fd-find wl-clipboard
+# 2. NVM (Node Version Manager)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
+if set -q XDG_CONFIG_HOME
+    set -gx NVM_DIR "$XDG_CONFIG_HOME/nvm"
+else
+    set -gx NVM_DIR "$HOME/.nvm"
+end
+test -s "$NVM_DIR/nvm.sh"; and source "$NVM_DIR/nvm.sh"
+# 3. LazyGit
+sudo dnf copr enable atim/lazygit -y
+sudo dnf install lazygit -y
+```
+
 ### Dependencies on Debian / Ubuntu:
 
 ```bash
@@ -90,6 +106,26 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 # 3. LazyGit
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+tar xf lazygit.tar.gz lazygit
+sudo install lazygit /usr/local/bin
+rm lazygit.tar.gz lazygit
+```
+
+```fish
+# 1. System dependencies and utilities
+sudo apt update
+sudo apt install -y build-essential unzip wget curl git ripgrep fd-find xclip wl-clipboard
+# 2. NVM (Node Version Manager)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
+if set -q XDG_CONFIG_HOME
+    set -gx NVM_DIR "$XDG_CONFIG_HOME/nvm"
+else
+    set -gx NVM_DIR "$HOME/.nvm"
+end
+test -s "$NVM_DIR/nvm.sh"; and source "$NVM_DIR/nvm.sh"
+# 3. LazyGit
+set LAZYGIT_VERSION (curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_$LAZYGIT_VERSION"_Linux_x86_64.tar.gz
 tar xf lazygit.tar.gz lazygit
 sudo install lazygit /usr/local/bin
 rm lazygit.tar.gz lazygit
