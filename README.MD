@@ -61,6 +61,7 @@ Dependencies required for the plugins to work properly (Telescope, Treesitter, e
 
 ### Dependencies on Fedora:
 
+### Bash
 ```bash
 # 1. System dependencies and utilities
 sudo dnf install -y gcc g++ make unzip wget curl git ripgrep fd-find wl-clipboard
@@ -75,6 +76,7 @@ sudo dnf copr enable atim/lazygit -y
 sudo dnf install lazygit -y
 ```
 
+### Fish
 ```fish
 # 1. System dependencies and utilities
 sudo dnf install -y gcc g++ make unzip wget curl git ripgrep fd-find wl-clipboard
@@ -93,6 +95,7 @@ sudo dnf install lazygit -y
 
 ### Dependencies on Debian / Ubuntu:
 
+### Bash
 ```bash
 # 1. System dependencies and utilities
 sudo apt update
@@ -111,6 +114,7 @@ sudo install lazygit /usr/local/bin
 rm lazygit.tar.gz lazygit
 ```
 
+### Fish
 ```fish
 # 1. System dependencies and utilities
 sudo apt update
