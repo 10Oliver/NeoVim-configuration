@@ -52,7 +52,7 @@ return {
       local ok, configs = pcall(require, "nvim-treesitter.configs")
       if not ok then return end
       configs.setup {
-        ensure_installed = { "javascript", "typescript", "vue", "svelte", "angular", "php", "html", "css", "lua", "json", "bash" },
+        ensure_installed = { "javascript", "typescript", "vue", "svelte", "angular", "php", "html", "css", "lua", "json", "bash", "markdown", "markdown_inline" },
         sync_install = false,
         auto_install = true,
         highlight = {
@@ -90,6 +90,10 @@ return {
       local mason = require("mason")
       local mason_lspconfig = require("mason-lspconfig")
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      capabilities.workspace = capabilities.workspace or {}
+      capabilities.workspace.didChangeWatchedFiles = {
+        dynamicRegistration = false,
+      }
 
       mason.setup()
 
@@ -150,8 +154,8 @@ return {
       cmp.setup({
         snippet = { expand = function(args) luasnip.lsp_expand(args.body) end },
         mapping = cmp.mapping.preset.insert({
-          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-          ['<C-f>'] = cmp.mapping.scroll_docs(4),
+          ['<PageUp>'] = cmp.mapping.scroll_docs(-4),
+          ['<PageDown>'] = cmp.mapping.scroll_docs(4),
           ['<C-Space>'] = cmp.mapping.complete(),
           ['<C-e>'] = cmp.mapping.abort(),
           ['<CR>'] = cmp.mapping.confirm({ select = true }),
