@@ -21,9 +21,30 @@ This configuration uses a modular structure managed by `lazy.nvim` to keep setti
 ```
 
 ### 📥 Installation
-Clone this repository directly into your Neovim configuration directory:
+
+The supported installer prepares the dependencies, Neovim, plugins and a selected theme on Fedora or Ubuntu:
+
 ```bash
-git clone https://github.com/10Oliver/NeoVim-configuration.git ~/.config/nvim
+git clone https://github.com/10Oliver/NeoVim-configuration.git
+cd NeoVim-configuration
+./install.sh
+```
+
+It saves an existing `~/.config/nvim` configuration in `~/.config/nvim-backups/` before replacing it. Use `./install.sh --dry-run` to review its actions without changing the system.
+
+During installation choose one of these themes:
+
+- TokyoNight (default)
+- Catppuccin Mocha
+- Kanagawa Dragon
+- Dynamic palette transfer from illogical-impulse / Quickshell
+
+The transfer option reads `~/.local/state/quickshell/user/generated/terminal/kitty-theme.conf`. Install and run end-4's illogical-impulse first; Neovim will use TokyoNight until Quickshell generates that file.
+
+After the installer finishes, authenticate GitHub Copilot manually in Neovim:
+
+```vim
+:Copilot auth
 ```
 
 ### 🔄 Updating
@@ -34,9 +55,11 @@ git pull
 ```
 After pulling, open Neovim and run `:Lazy sync` to update the plugins.
 
-## 🛠️ Neovim Installation
+## 🛠️ Manual installation
 
-To ensure full compatibility with the plugins, **Neovim 0.10 or higher** is required.
+`install.sh` is the supported path. The manual instructions below remain useful if you prefer to manage dependencies yourself.
+
+To ensure full compatibility with the plugins, **Neovim 0.11 or higher** is required. The installer pins the tested official version, **0.11.6**.
 *Note: `nvim-treesitter` is pinned to `v0.9.3` to maintain compatibility with Neovim 0.11 and older. If you update Neovim to 0.12+ (Nightly), you can remove the `tag = "v0.9.3"` from `lua/plugins/lsp.lua` to use the latest treesitter branch.*
 
 ### Fedora

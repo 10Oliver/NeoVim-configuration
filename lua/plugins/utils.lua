@@ -27,6 +27,7 @@ return {
   },
 
   -- COPILOT
+  -- After installation, authenticate manually from Neovim with: :Copilot auth
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",

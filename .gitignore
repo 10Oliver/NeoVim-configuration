@@ -8,4 +8,4 @@ pack/
 
 lazy-lock.json   # ESTE SÍ SE DEJA (asegura versiones exactas)
 .nvimlog
-
+lua/config/theme.local.lua

@@ -5,20 +5,24 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      local terminal_theme = require("config.terminal_theme")
-
-      require("tokyonight").setup({
-        style = "night",
-        transparent = true,
-        styles = {
-          comments = { italic = true },
-          keywords = { italic = true },
-          sidebars = "transparent",
-          floats = "transparent",
-        },
-      })
-      vim.cmd([[colorscheme tokyonight]])
-      terminal_theme.setup()
+      require("config.theme").setup_tokyonight()
+    end,
+  },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("config.theme").setup_catppuccin()
+    end,
+  },
+  {
+    "rebelot/kanagawa.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("config.theme").setup_kanagawa()
     end,
   },
 
@@ -30,10 +34,10 @@ return {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      local terminal_theme = require("config.terminal_theme")
+      local theme = require("config.theme")
 
       require("lualine").setup({
-        options = { theme = terminal_theme.lualine_theme() or "tokyonight" }
+        options = { theme = theme.lualine_theme() }
       })
     end
   },
