@@ -5,11 +5,20 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
+      local terminal_theme = require("config.terminal_theme")
+
       require("tokyonight").setup({
         style = "night",
-        styles = { comments = { italic = true }, keywords = { italic = true } },
+        transparent = true,
+        styles = {
+          comments = { italic = true },
+          keywords = { italic = true },
+          sidebars = "transparent",
+          floats = "transparent",
+        },
       })
       vim.cmd([[colorscheme tokyonight]])
+      terminal_theme.setup()
     end,
   },
 
@@ -21,8 +30,10 @@ return {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
+      local terminal_theme = require("config.terminal_theme")
+
       require("lualine").setup({
-        options = { theme = "tokyonight" }
+        options = { theme = terminal_theme.lualine_theme() or "tokyonight" }
       })
     end
   },
